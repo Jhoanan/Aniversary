@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de Tareas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body style="background: linear-gradient(540deg, #24aacc, #ffffff);"><br><br>
+  <div class="container">
+    <h1 class="text-center">En esta seccion puedes pedir lo que te gustaria para nuestro dia amor <br> &#128536;</h1><br>
+    
+    <form id="taskForm">
+      <div class="form-group">
+        <center><label for="task" style="color: rgb(31, 6, 6);"><strong>PIDE TU DESEO</strong></label></center>
+        <input type="text" class="form-control" id="task" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block"><strong>PIDE TU DESEO</strong></button>
+      <button class="btn btn-danger btn-block" onclick="location.href='aniversario.html'"><strong>VOLVER</strong></button>
+    </form><br>
+    
+    <ul id="taskList" class="h5 mt-2"></ul>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      loadTasks();
+      
+      $("#taskForm").submit(function(e) {
+        e.preventDefault();
+        
+        var task = $("#task").val();
+        
+        if (task !== "") {
+          var listItem = $("<li>").text(task);
+          
+          $("#taskList").append(listItem);
+          
+          $("#task").val("");
+          
+          saveTasks();
+        }
+      });
+      
+      function saveTasks() {
+        var tasks = [];
+        $("#taskList li").each(function() {
+          tasks.push($(this).text());
+        });
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      }
+      
+      function loadTasks() {
+        var storedTasks = localStorage.getItem("tasks");
+        
+        if (storedTasks) {
+          var tasks = JSON.parse(storedTasks);
+          
+          tasks.forEach(function(task) {
+            var listItem = $("<li>").text(task);
+            
+            $("#taskList").append(listItem);
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

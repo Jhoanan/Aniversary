@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Conteo de nuestro 3er Mes Juntos </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    .card {
+      text-align: center;
+      background: linear-gradient(540deg, #4c00ff, #ffffff);
+      margin-bottom: 50px;
+      height: 300px; /* Ajusta la altura del card según tus necesidades */
+    }
+
+    .card.h-100 {
+      height: 100px;
+      border-radius: 100px;
+    }
+
+    .container {
+      
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body style="background: linear-gradient(540deg, #6430f5, #ffffff);"><br><br><br><br><br><br>
+  <div class="container">
+    <h1 style="font-size: 50px; color: white;"><strong>Conteo de nuestro 3er Mes Juntos<br> &#128152;</strong></h1> <br><br>
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h1 class="card-title" id="days" >15</h1><br>
+            <p class="card-text text-nowrap" style="font-weight: bold; font-size: larger;">DIAS</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h1 class="card-title" id="hours">360</h1><br>
+            <p class="card-text text-nowrap" style="font-weight: bold; font-size: larger;">HORAS</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h1 class="card-title" id="minutes">21,600</h1><br>
+            <p class="card-text text-nowrap" style="font-weight: bold; font-size: larger;">MINUTOS</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h1 class="card-title" id="seconds">1,296,000</h1><br>
+            <p class="card-text text-nowrap" style="font-weight: bold; font-size: larger;">SEGUNDOS</p>
+          </div>
+        </div>
+      </div>
+    </div><br>
+
+    <div class="row">
+     
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <button class="btn btn-primary btn-block" onclick="location.href='lista_deseo.html'"><strong>Pide tu Deseo</strong></button>
+      </div><br><br>
+      <button class="btn btn-danger btn-block" onclick="location.href='index.html'"><strong>SALIR</strong></button>
+    </div>
+    
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Establecer la fecha de aniversario (3 de julio de 2023)
+      var anniversaryDate = new Date("2022-06-15");
+
+      // Actualizar el contador cada segundo
+      setInterval(updateCountdown, 1000);
+
+      function updateCountdown() {
+        var currentDate = new Date();
+        var timeDifference = anniversaryDate - currentDate;
+
+        // Calcular días, horas, minutos y segundos restantes
+        var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        // Actualizar los elementos HTML con los valores calculados
+        $("#days").text(days);
+        $("#hours").text(hours);
+        $("#minutes").text(minutes);
+        $("#seconds").text(seconds);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MES_VERSARIO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(540deg, #ff2200, #ffffff);
+    }
+    
+    .container {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    @media (max-width: 576px) {
+      body {
+        background-color: white;
+      }
+      
+      .container {
+        margin-top: 50px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      }
+    }
+    
+    .dark-mode {
+      background: linear-gradient(540deg, #000000, #333333);
+      color: white;
+    }
+    
+    .dark-mode-icon {
+      font-size: 20px;
+    }
+    
+    .dark-mode-button {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Estilos para el modal de éxito */
+    #successModal .modal-header {
+      background-color: #f79c9c;
+      color: white;
+    }
+
+    #successModal .modal-title {
+      font-weight: bold;
+    }
+
+    #successModal .modal-body {
+      background-color: #ffe8e8;
+    }
+
+    #successModal .modal-footer {
+      background-color: #f79c9c;
+    }
+
+    #successModal .btn {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+    
+    <div class="container">
+      <h1 class="text-center">Fecha Cuando Inicio Nuestra Historia <br> &#129505;&#129505;&#129505;&#129505;&#129505;</h1>
+      <form id="loginForm">
+        <div class="form-group">
+          <input type="date" class="form-control" id="fecha" required>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Ingresar</button>
+        </div>
+      </form>
+      <button id="darkModeToggle" class="btn btn-dark dark-mode-button">
+        <i class="fas fa-moon dark-mode-icon"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal de mensaje de error -->
+  <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="errorModalLabel">Que paso princesa como asi ...!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Esta no es la fecha de nuestro mes que paso...!!!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de mensaje de éxito -->
+  <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #ff7f7f;">
+          <h5 class="modal-title" id="successModalLabel" style="color: white;">Gracias por recordar nuestra fecha tan importante mi niña piciosa<span class="icocor1">&#129505;</span></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="background-color: #ffe8e8;">
+          <p style="color: #ff7f7f;">Redireccionando a la pagina preciosa ...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  
+  <script>
+    $(document).ready(function() {
+      // Establecer la fecha de acceso correcta (3 de abril de 2021)
+      var correctDate = new Date("2022-06-15");
+      
+      // Manejar el evento de envío del formulario
+      $("#loginForm").submit(function(event) {
+        event.preventDefault();
+        
+        // Obtener la fecha ingresada en el formulario
+        var inputDate = new Date($("#fecha").val());
+        
+        // Comparar la fecha ingresada con la fecha de acceso correcta
+        if (inputDate.toDateString() === correctDate.toDateString()) {
+          // Fecha de acceso correcta, mostrar el mensaje de éxito y redireccionar a la página de aniversario
+          $("#successModal").modal("show");
+          setTimeout(function() {
+            $("#successModal").modal("hide");
+            window.location.href = "aniversario.html";
+          }, 5000); // Mostrar el mensaje durante 5 segundos antes de redireccionar
+        } else {
+          // Fecha de acceso incorrecta, mostrar el modal de error
+          $("#errorModal").modal("show");
+        }
+      });
+
+      // Manejar el evento de cambio al modo oscuro
+      $("#darkModeToggle").click(function() {
+        $("body").toggleClass("dark-mode");
+        $("#darkModeToggle").find("i").toggleClass("fa-moon fa-sun");
+      });
+    });
+  </script>
+</body>
+</html>
